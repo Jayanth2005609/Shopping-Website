@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { useStore } from "@/lib/store"
+import { useStore } from "../lib/store"
 import { ShoppingCart, Heart, LogOut, User } from "lucide-react"
 import { useState } from "react"
-import { logout } from "@/lib/auth"
+import { logout } from "../lib/auth"
 import { useRouter } from "next/navigation"
 
 export function Navbar() {

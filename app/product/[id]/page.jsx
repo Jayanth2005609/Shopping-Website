@@ -1,10 +1,10 @@
 "use client";
 
-import { useStore } from "@/lib/store";
+import { useStore } from "../lib/store";
 import { useParams } from "next/navigation";
 import { Star, ShoppingCart, Heart, MessageCircle } from "lucide-react";
 import { useState } from "react";
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "../components/product-card";
 
 export default function ProductPage() {
   const params = useParams();

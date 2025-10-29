@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useStore } from "@/lib/store";
-import { getCurrentUser } from "@/lib/auth";
+import { useStore } from "../lib/store";
+import { getCurrentUser } from "../lib/auth";
 
 export function AuthProvider({ children }) {
   const setUser = useStore((state) => state.setUser);

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import Link from "next/link";
-import { useStore } from "@/lib/store";
+import { useStore } from "../lib/store";
 
 export function ProductCard({ product }) {
   const addToCart = useStore((state) => state.addToCart);
