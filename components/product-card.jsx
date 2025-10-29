@@ -1,36 +1,31 @@
-"use client"
+"use client";
 
-import type { Product } from "@/lib/store"
-import { Heart, ShoppingCart, Star } from "lucide-react"
-import Link from "next/link"
-import { useStore } from "@/lib/store"
-import { useState } from "react"
+import React, { useState } from "react";
+import { Heart, ShoppingCart, Star } from "lucide-react";
+import Link from "next/link";
+import { useStore } from "@/lib/store";
 
-interface ProductCardProps {
-  product: Product
-}
+export function ProductCard({ product }) {
+  const addToCart = useStore((state) => state.addToCart);
+  const addToWishlist = useStore((state) => state.addToWishlist);
+  const removeFromWishlist = useStore((state) => state.removeFromWishlist);
+  const wishlist = useStore((state) => state.wishlist);
+  const [quantity, setQuantity] = useState(1);
 
-export function ProductCard({ product }: ProductCardProps) {
-  const addToCart = useStore((state) => state.addToCart)
-  const addToWishlist = useStore((state) => state.addToWishlist)
-  const removeFromWishlist = useStore((state) => state.removeFromWishlist)
-  const wishlist = useStore((state) => state.wishlist)
-  const [quantity, setQuantity] = useState(1)
-
-  const isInWishlist = wishlist.includes(product.id)
+  const isInWishlist = wishlist.includes(product.id);
 
   const handleAddToCart = () => {
-    addToCart(product.id, quantity)
-    setQuantity(1)
-  }
+    addToCart(product.id, quantity);
+    setQuantity(1);
+  };
 
   const handleWishlist = () => {
     if (isInWishlist) {
-      removeFromWishlist(product.id)
+      removeFromWishlist(product.id);
     } else {
-      addToWishlist(product.id)
+      addToWishlist(product.id);
     }
-  }
+  };
 
   return (
     <div className="bg-card rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -54,7 +49,9 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <div className="p-4">
         <Link href={`/product/${product.id}`}>
-          <h3 className="font-semibold text-lg hover:text-primary transition-colors line-clamp-2">{product.name}</h3>
+          <h3 className="font-semibold text-lg hover:text-primary transition-colors line-clamp-2">
+            {product.name}
+          </h3>
         </Link>
 
         <div className="flex items-center gap-2 mt-2">
@@ -62,14 +59,22 @@ export function ProductCard({ product }: ProductCardProps) {
             <Star size={16} className="fill-yellow-400 text-yellow-400" />
             <span className="text-sm font-medium">{product.rating}</span>
           </div>
-          <span className="text-sm text-muted-foreground">({product.reviews})</span>
+          <span className="text-sm text-muted-foreground">
+            ({product.reviews})
+          </span>
         </div>
 
-        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{product.description}</p>
+        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+          {product.description}
+        </p>
 
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-2xl font-bold text-primary">₹{product.price.toLocaleString("en-IN")}</span>
-          <span className="text-sm text-muted-foreground">{product.stock > 0 ? "In Stock" : "Out of Stock"}</span>
+          <span className="text-2xl font-bold text-primary">
+            ₹{product.price.toLocaleString("en-IN")}
+          </span>
+          <span className="text-sm text-muted-foreground">
+            {product.stock > 0 ? "In Stock" : "Out of Stock"}
+          </span>
         </div>
 
         <div className="mt-4 flex gap-2">
@@ -78,7 +83,9 @@ export function ProductCard({ product }: ProductCardProps) {
             min="1"
             max={product.stock}
             value={quantity}
-            onChange={(e) => setQuantity(Math.max(1, Number.parseInt(e.target.value) || 1))}
+            onChange={(e) =>
+              setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+            }
             className="w-16 px-2 py-2 border border-border rounded text-center"
           />
           <button
@@ -92,5 +99,5 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
