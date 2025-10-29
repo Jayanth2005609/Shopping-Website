@@ -1,48 +1,52 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { login } from "@/lib/auth"
-import { useStore } from "@/lib/store"
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { login } from "@/lib/auth";
+import { useStore } from "@/lib/store";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const setUser = useStore((state) => state.setUser)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const setUser = useStore((state) => state.setUser);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    const result = login(email, password)
+    const result = await login(email, password);
 
     if (!result.success) {
-      setError(result.error || "Login failed")
-      setLoading(false)
-      return
+      setError(result.error || "Login failed");
+      setLoading(false);
+      return;
     }
 
     if (result.user) {
-      setUser(result.user)
-      router.push("/")
+      setUser(result.user);
+      router.push("/");
     }
-  }
+  };
 
   return (
     <main className="min-h-screen bg-background flex items-center justify-center py-12 px-4">
       <div className="w-full max-w-md">
         <div className="bg-card rounded-lg shadow-lg p-8">
           <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
-          <p className="text-muted-foreground mb-6">Login to your E commerce Store account</p>
+          <p className="text-muted-foreground mb-6">
+            Login to your E-commerce Store account
+          </p>
 
-          {error && <div className="bg-destructive/10 text-destructive p-3 rounded-lg mb-4 text-sm">{error}</div>}
+          {error && (
+            <div className="bg-destructive/10 text-destructive p-3 rounded-lg mb-4 text-sm">
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -79,7 +83,7 @@ export default function LoginPage() {
           </form>
 
           <p className="text-center text-sm text-muted-foreground mt-6">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/register" className="text-primary hover:underline font-semibold">
               Register
             </Link>
@@ -87,5 +91,5 @@ export default function LoginPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }

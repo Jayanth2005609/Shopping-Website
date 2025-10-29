@@ -35,7 +35,7 @@
     ".next/types/**/*.ts",
     ".next\\dev/types/**/*.ts",
     ".next\\dev/types/**/*.ts"
-, "app/cart/page.tsx"  ],
+, "app/cart/page.jsx", "app/product/[id]/page.jsx", "app/orders/page.jsx", "app/login/page.jsx", "app/register/page.jsx", "app/page.jsx", "app/layout.jsx", "app/wishlist/page.jsx", "lib/utils.js", "lib/store.js", "lib/auth.js", "hooks/use-toast.js", "hooks/use-mobile.js"  ],
   "exclude": [
     "node_modules"
   ]
