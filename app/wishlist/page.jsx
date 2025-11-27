@@ -1,7 +1,7 @@
 "use client"
 
-import { useStore } from "../lib/store"
-import { ProductCard } from "@/components/product-card"
+import { useStore } from "../../lib/store"
+import { ProductCard } from "../../components/product-card"
 import Link from "next/link"
 
 export default function WishlistPage() {

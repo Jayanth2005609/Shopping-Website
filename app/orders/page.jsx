@@ -1,16 +1,16 @@
 "use client"
 
-import { useStore } from "@/lib/store"
+import { useStore } from "../../lib/store"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 
 export default function OrdersPage() {
   const user = useStore((state) => state.user)
-  const getOrders = useStore((state) => state.getOrders) // Get user orders
+  const getOrders = useStore((state) => state.getOrders) 
   const products = useStore((state) => state.products)
   const router = useRouter()
-  const orders = getOrders() // Fetch orders for current user
+  const orders = getOrders() 
 
   useEffect(() => {
     if (!user) {

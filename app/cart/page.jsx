@@ -1,6 +1,6 @@
 "use client"
 
-import { useStore } from "@/lib/store"
+import { useStore } from "../../lib/store"
 import { Trash2, Plus, Minus } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"

@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { register } from "@/lib/auth";
-import { useStore } from "@/lib/store";
+import { register } from "../../lib/auth";
+import { useStore } from "../../lib/store";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
